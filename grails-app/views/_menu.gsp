@@ -16,19 +16,26 @@
 			<li>
 				<g:link controller="UserView" mapping="backendMapping">
 					<i class="fa fa-lg fa-fw fa-group"></i>
-					<span class="menu-item-parent">Usuarios</span>
+					<span class="menu-item-parent"><g:message code="user.list.label"/></span>
 				</g:link>
 			</li>
 			<li>
 				<g:link controller="UserView" action="profile" mapping="backendMapping">
 					<i class="fa fa-lg fa-fw fa-user"></i>
-					<span class="menu-item-parent">Perfil</span>
+					<span class="menu-item-parent"><g:message code="user.profile.label"/></span>
 				</g:link>
 			</li>
 			<li>
-				<g:link controller="EndPointsView" mapping="backendMapping">
+				<g:link controller="EndPointView" mapping="backendMapping">
 					<i class="fa fa-lg fa-fw fa-exchange "></i>
-					<span class="menu-item-parent">EndPoints</span>
+					<span class="menu-item-parent"><g:message code="endPoint.list.label"/></span>
+				</g:link>
+			</li>
+
+			<li>
+				<g:link controller="SubscrptionView" mapping="backendMapping">
+					<i class="fa fa-lg fa-fw fa-envelope "></i>
+					<span class="menu-item-parent"><g:message code="subscrption.list.label"/></span>
 				</g:link>
 			</li>
 

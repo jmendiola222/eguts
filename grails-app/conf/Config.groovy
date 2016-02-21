@@ -1,3 +1,5 @@
+import helpers.SecurityConstants
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -176,24 +178,35 @@ grails.plugin.springsecurity.securityConfigType = 'Annotation'
 grails.plugin.springsecurity.securityConfigType = 'Annotation'
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        'version'        : ['permitAll'],
-        '/login/**'      : ['permitAll'],
-        '/'              : ['permitAll'],
-        '/front'         : ['permitAll'],
-        '/front/**'      : ['permitAll'],
-        '/controls/**'   : ['hasAnyRole("ROLE_SYSADMIN","ROLE_ADMIN","ROLE_USER")'],
-        '/**View/**'     : ['hasAnyRole("ROLE_ADMIN")'],
-        '/**userView/**' : ['hasAnyRole("ROLE_SYSADMIN")'],
-        '/dbconsole/**'  : ['hasAnyRole("ROLE_ADMIN")'],
-        '/test'          : ['hasAnyRole("ROLE_ADMIN")'],
-        '/test/**'       : ['hasAnyRole("ROLE_ADMIN")'],
-        '/index'         : ['permitAll'],
-        '/index.gsp'     : ['permitAll'],
-        '/assets/**'     : ['permitAll'],
-        '/**/js/**'      : ['permitAll'],
-        '/**/css/**'     : ['permitAll'],
-        '/**/images/**'  : ['permitAll'],
-        '/**/favicon.ico': ['permitAll']]
+
+        'version'        : [SecurityConstants.PERMIT_ALL],
+        '/login/**'      : [SecurityConstants.PERMIT_ALL],
+        '/'              : [SecurityConstants.PERMIT_ALL],
+        '/front'         : [SecurityConstants.PERMIT_ALL],
+        '/front/**'      : [SecurityConstants.PERMIT_ALL],
+        '/controls/**'   : [SecurityConstants.HAS_APP_ROLE],
+        '/**View/**'     : [SecurityConstants.HAS_ADMIN_ROLE],
+        '/**userView/**' : [SecurityConstants.HAS_SYS_ADMIN_ROLE],
+        '/dbconsole/**'  : [SecurityConstants.HAS_ADMIN_ROLE],
+        '/test'          : [SecurityConstants.HAS_ADMIN_ROLE],
+        '/test/**'       : [SecurityConstants.HAS_ADMIN_ROLE],
+        '/index'         : [SecurityConstants.PERMIT_ALL],
+        '/index.gsp'     : [SecurityConstants.PERMIT_ALL],
+        '/assets/**'     : [SecurityConstants.PERMIT_ALL],
+        '/**/js/**'      : [SecurityConstants.PERMIT_ALL],
+        '/**/css/**'     : [SecurityConstants.PERMIT_ALL],
+        '/**/images/**'  : [SecurityConstants.PERMIT_ALL],
+        '/**/favicon.ico': [SecurityConstants.PERMIT_ALL],
+
+        //App Business Access
+        '/**/show'       : [SecurityConstants.HAS_BACK_ABM_ROLE],
+        '/**/save'    : [SecurityConstants.HAS_BACK_ABM_ROLE],
+        '/**/update'    : [SecurityConstants.HAS_BACK_ABM_ROLE],
+        '/**/delete'    : [SecurityConstants.HAS_BACK_ABM_ROLE],
+
+        '/api/endPoint/index' : [SecurityConstants.PERMIT_ALL]
+
+]
 
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/'
 grails.plugin.springsecurity.adh.errorPage = '/error/accessDenied'

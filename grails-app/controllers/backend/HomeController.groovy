@@ -27,7 +27,7 @@ class HomeController {
 			redirect(controller: "userView", mapping: "backendMapping")
 		else {
 			if (currentLoggedInUser.role.authority == 'ROLE_ADMIN')
-				redirect(controller: "endpointView", mapping: "backendMapping")
+				redirect(controller: "endPointView", mapping: "backendMapping")
 			else
 				response.status = HttpStatus.FORBIDDEN.value();
 		}

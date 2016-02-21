@@ -11,7 +11,9 @@
 *= require angular-csp.css
 *= require bootstrap.css
 *= require smartadmin-production.css
+*= require eguts
 *= require smartadmin-skins.css
+*= require custom-personalData
 *= require_self
 */
 

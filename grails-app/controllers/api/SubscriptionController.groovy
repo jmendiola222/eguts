@@ -13,6 +13,8 @@ import javax.transaction.Transactional
 
 class SubscriptionController extends PaginableRestController {
 
+	static allowedMethods = [subscribeAnonymous: "POST"]
+
 	def endPointService
 
 	@Autowired
@@ -21,7 +23,7 @@ class SubscriptionController extends PaginableRestController {
 	}
 
 	@Transactional
-	def Subscription save(CreateBaseSubscriptionCommand command) {
+	def Subscription subscribeAnonymous(CreateBaseSubscriptionCommand command) {
 
 		def subscriberRole = Role.findByAuthority(Const.ROLE_SUBSCRIBER)
 		def user = User.findByEmail(command.email) ?: new User(email: command.email , username: command.email.substring(0, command.email.indexOf("@")), enabled: true, role: subscriberRole).save(failOnError: true)

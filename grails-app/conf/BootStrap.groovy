@@ -3,6 +3,7 @@ import helpers.DateUtils
 import models.Subscription
 import models.SubscriptionStatus
 import models.config.EndPointElementType
+import models.config.MatchCriteria
 import models.user.Role
 import models.user.User
 import models.config.EndPoint
@@ -12,6 +13,7 @@ import org.joda.time.DateTime
 
 class BootStrap {
 
+    def bootstrapService
     def grailsApplication
     def subscriptionRunnerService
 
@@ -39,9 +41,9 @@ class BootStrap {
             mercadoLibreEP = new EndPoint(
                     name : "Mercado Libre",
                     target : "https://www.kimonolabs.com/api/d95rruok?apikey=Yj3HnrAbhZibWvWeozjQWHeDDdkvkhiv"
-            );
-            mercadoLibreEP.urlMatchs = new LinkedList<String>()
-            mercadoLibreEP.urlMatchs.add(".*.mercadolibre.com.*");
+            )
+            def matcher = new MatchCriteria(value: ".*.mercadolibre.com.*")
+            mercadoLibreEP.addToUrlMatchs(matcher)
 
             mercadoLibreEP.endPointElements = [
                 new EndPointElement(type: EndPointElementType.ELEMENT_SELECTOR, name: "url", endPoint: mercadoLibreEP),
@@ -61,6 +63,8 @@ class BootStrap {
             Subscription subscription = new Subscription(subscriber: testUsr, url: url, endPoint: mercadoLibreEP, status: SubscriptionStatus.ACTIVE, startDate: DateUtils.now())
             subscription.save(failOnError: true)
         }
+
+        bootstrapService.init();
 
         //runBackgroundService();
     }

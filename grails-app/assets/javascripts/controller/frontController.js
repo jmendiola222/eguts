@@ -39,17 +39,20 @@ app.controller('SubscriptionCtrl', [ '$scope', 'Subscription',
 		$scope.subscription = new Subscription();
 
 		$scope.ok = function () {
-			Subscription["save"]($scope.subscription,
-			function(response) {
-				$scope.alert = 'Subscripcion guardada correctamente.' + response.data;
-				$scope.alertType = "alert-success";
-			}, function(response) {
-				$scope.alert = 'Error al guardar la subscripcion. ';
-				if (angular.isObject(response.data) && angular.isObject(response.data.errors)){
-					$scope.alert = response.data.errors[0].message;
+			Subscription.subscribeAnonymous($scope.subscription)
+			.success(
+				function(response) {
+					$scope.alert = 'Subscripcion guardada correctamente.' + response.data;
+					$scope.alertType = "alert-success";
 				}
-				$scope.alertType = "alert-danger";
-			});
+			).error(
+				function(response) {
+					$scope.alert = 'Error al guardar la subscripcion. ';
+					if (angular.isObject(response.errors)){
+						$scope.alert = response.errors[0].message;
+					}
+					$scope.alertType = "alert-danger";
+				});
 		}
 	}
 ]);

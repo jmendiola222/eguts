@@ -13,6 +13,7 @@ class UrlMappings {
 
         "/api/user"(resources: 'user')
         "/api/role"(resources: 'role')
+        "/api/endPoint"(resources: 'endPoint')
 
         "/controls/bootstrap-grid"(view: "/controls/bootstrap-grid")
         "/controls/grails-alerts"(view: "/controls/grails-alerts")
