@@ -1,0 +1,120 @@
+.page {
+	
+}
+
+.page-top-bar {
+	
+	/* widget-body-toolbar */
+	display: block;
+	padding: 8px 10px;
+	margin: -13px -13px 13px;
+	min-height: 42px;
+	border-bottom: 1px solid #ccc;
+	background: #fafafa;
+	
+	.form-control {
+		max-width: 175px !important;
+	}
+	
+	
+}
+
+.page-content {
+	
+}
+
+.grid-container {
+	
+}
+
+
+.tooltip {
+	z-index : 10000;
+}
+
+.dropdown-menu {
+	z-index : 10000;
+}
+
+ @media ( min-width : 992px) {
+       .big-modal .modal-dialog {
+               width: 900px;
+ }
+ }
+
+.capitalized {
+	text-transform: capitalize;
+}
+
+.margin-top-10 { 
+	margin-top: 10px;
+}
+
+.margin-top-100 { 
+	margin-top: 100px;
+}
+
+.accordion-toggle {
+	cursor: pointer; 
+}
+
+.panel-heading button {
+	/*margin-left: 20px;*/
+	i {
+		margin-right: 5px;
+	}
+}
+
+.glyphicon {
+	top: 3px !important;
+}
+
+#news-tabs {
+	ul {
+		border: 1px solid #dddddd !important;
+		background: #ffffff; 
+	}
+
+	.tab-content {
+		border: 1px solid #dddddd;
+		border-top: none;
+		background: #ffffff;
+	}
+	
+	.nav-tabs {
+		a  {
+			cursor: pointer;
+		}
+	}
+}
+
+.image-preview {
+	width: 400px;
+}
+
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.table-wrapper {
+	overflow-x: auto;
+}
+
+@media screen and (min-width: 100px){
+    body .ie8{
+        display: block;
+    }
+    /* … rest of your CSS rules … */
+}

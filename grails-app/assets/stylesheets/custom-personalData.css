@@ -1,0 +1,65 @@
+input, select, textarea, div, ul, li, a {
+    border-radius: 0px!important;
+}
+
+.control-label {
+    text-align: left!important;
+}
+.text-error {
+    color:#a94442;
+    font-size: 12px;
+}
+textarea {
+    resize:none;
+}
+.icon {
+    width: 14px;
+    height: 14px;
+    position: relative;
+    display: inline-block;
+}
+.icon-remove {
+    background: url(../assets/icon-remove.png);
+}
+.icon-edit {
+    background: url(../assets/icon-edit.png);
+}
+.icon-remove-white {
+    background: url(../assets/icon-remove-white.png);
+    margin-top:2px;
+}
+.table th.col-md-3, .table th.col-md-2, .table th.col-md-9 {
+    padding-left: 20px;
+}
+.table th.col-md-8 {
+    padding-left: 25px;
+}
+.table i {
+    margin-right:10px;
+}
+.pagination {
+    margin:0;
+}
+
+#fleetGrid .dt-bottom-row {
+    font-size: 12px;
+}
+
+.edit-link, .delete-link {
+    cursor: pointer;
+}
+
+.tbl_custom th {
+    font-size: 14px;
+    text-align: left; /*Esto lo agregué para que quede como las teníamos nosotros, de última se saca*/
+    border-bottom: 0px !important;
+}
+
+.tbl_custom .order{
+    font-size: 18px;
+    color: #95B9D1;
+}
+
+.tbl_custom .td_big {
+    width: 10%;
+}

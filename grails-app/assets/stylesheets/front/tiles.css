@@ -1,0 +1,284 @@
+/* line 77, tiles.scss */
+.tile {
+  display: block;
+  cursor: pointer;
+  -webkit-perspective: 0;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.2s;
+  float: left;
+  min-width: 75px;
+  min-height: 75px;
+  text-align: center;
+  opacity: 0.75;
+  background-color: #224681;
+  z-index: 1;
+  border: 4px white solid;
+  color: white;
+}
+/* line 93, tiles.scss */
+.tile h1, .tile h2, .tile h3, .tile h4, .tile h5, .tile h6 {
+  color: white;
+  -webkit-user-select: none;
+}
+/* line 97, tiles.scss */
+.tile h2 {
+  font-size: 1.75em;
+  margin-top: -20px;
+  margin-left: 0px;
+}
+/* line 98, tiles.scss */
+.tile h3, .tile h4 {
+  margin-top: -15px;
+}
+/* line 100, tiles.scss */
+.tile h1.tile-text, .tile h2.tile-text, .tile h3.tile-text, .tile h4.tile-text {
+  margin-top: 20px;
+}
+/* line 102, tiles.scss */
+.tile a:hover {
+  text-decoration: none;
+}
+
+/* line 107, tiles.scss */
+.tile img {
+  border: 0;
+}
+
+/* line 111, tiles.scss */
+.tile:hover {
+  opacity: 1;
+}
+
+/* line 115, tiles.scss */
+.tile .tile-label {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 14px;
+  color: white;
+}
+
+/* line 123, tiles.scss */
+.tile .tile-content .tile-icon-large {
+  margin-left: 0px;
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+/* line 130, tiles.scss */
+.tile .tile-content {
+  padding-top: 20px;
+  line-height: normal;
+  position: relative;
+  width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 141, tiles.scss */
+.tile.tile-blue {
+  background-color: #224681;
+}
+
+/* line 145, tiles.scss */
+.tile.tile-green {
+  background-color: #339933;
+}
+
+/* line 149, tiles.scss */
+.tile.tile-red {
+  background-color: #e51400;
+}
+
+/* line 153, tiles.scss */
+.tile.tile-yellow {
+  background-color: #ffc40d;
+}
+
+/* line 157, tiles.scss */
+.tile.tile-orange {
+  background-color: #f39c12;
+}
+
+/* line 161, tiles.scss */
+.tile.tile-pink {
+  background-color: #e671b8;
+}
+
+/* line 165, tiles.scss */
+.tile.tile-purple {
+  background-color: #7b4f9d;
+}
+
+/* line 169, tiles.scss */
+.tile.tile-lime {
+  background-color: #8cbf26;
+}
+
+/* line 173, tiles.scss */
+.tile.tile-magenta {
+  background-color: #ff0097;
+}
+
+/* line 177, tiles.scss */
+.tile.tile-teal {
+  background-color: #00aba9;
+}
+
+/* line 181, tiles.scss */
+.tile.tile-turquoise {
+  background-color: #1abc9c;
+}
+
+/* line 185, tiles.scss */
+.tile.tile-green-sea {
+  background-color: #16a085;
+}
+
+/* line 189, tiles.scss */
+.tile.tile-emerald {
+  background-color: #2ecc71;
+}
+
+/* line 193, tiles.scss */
+.tile.tile-nephritis {
+  background-color: #27ae60;
+}
+
+/* line 197, tiles.scss */
+.tile.tile-peter-river {
+  background-color: #3498db;
+}
+
+/* line 201, tiles.scss */
+.tile.tile-belize-hole {
+  background-color: #2980b9;
+}
+
+/* line 205, tiles.scss */
+.tile.tile-amethyst {
+  background-color: #9b59b6;
+}
+
+/* line 209, tiles.scss */
+.tile.tile-wisteria {
+  background-color: #8e44ad;
+}
+
+/* line 213, tiles.scss */
+.tile.tile-wet-asphalt {
+  background-color: #34495e;
+}
+
+/* line 217, tiles.scss */
+.tile.tile-midnight-blue {
+  background-color: #2c3e50;
+}
+
+/* line 221, tiles.scss */
+.tile.tile-sun-flower {
+  background-color: #f1c40f;
+}
+
+/* line 225, tiles.scss */
+.tile.tile-carrot {
+  background-color: #e67e22;
+}
+
+/* line 229, tiles.scss */
+.tile.tile-pumpkin {
+  background-color: #d35400;
+}
+
+/* line 233, tiles.scss */
+.tile.tile-alizarin {
+  background-color: #e74c3c;
+}
+
+/* line 237, tiles.scss */
+.tile.tile-pomegranate {
+  background-color: #c0392b;
+}
+
+/* line 241, tiles.scss */
+.tile.tile-clouds {
+  background-color: #ecf0f1;
+}
+/* line 244, tiles.scss */
+.tile.tile-clouds h1, .tile.tile-clouds h2, .tile.tile-clouds h3, .tile.tile-clouds h4, .tile.tile-clouds h5, .tile.tile-clouds h6 {
+  color: #34495e;
+}
+
+/* line 249, tiles.scss */
+.tile.tile-clouds .tile-label {
+  color: #34495e;
+}
+
+/* line 254, tiles.scss */
+.tile.tile-silver {
+  background-color: #bdc3c7;
+}
+
+/* line 258, tiles.scss */
+.tile.tile-concrete {
+  background-color: #95a5a6;
+}
+
+/* line 262, tiles.scss */
+.tile.tile-asbestos {
+  background-color: #7f8c8d;
+}
+
+/* line 267, tiles.scss */
+.tile.tile-info {
+  background-color: #3498db;
+}
+
+/* line 271, tiles.scss */
+.tile.tile-danger {
+  background-color: #e74c3c;
+}
+
+/* line 275, tiles.scss */
+.tile.tile-warning {
+  background-color: #f1c40f;
+}
+
+/* line 279, tiles.scss */
+.tile.tile-success {
+  background-color: #2ecc71;
+}
+
+/* line 285, tiles.scss */
+a.fa-links {
+  color: #ffffff;
+}
+
+/* line 289, tiles.scss */
+a.fa-links:hover, a.fa-links:focus {
+  color: #ffffff;
+}
+
+/* line 296, tiles.scss */
+.tile.tile-small {
+  height: 70px;
+  width: 70px;
+}
+
+/* line 301, tiles.scss */
+.tile.tile-medium {
+  height: 110px;
+  width: 110px;
+}
+
+/* line 306, tiles.scss */
+.tile.tile-wide, .tile.tile-double {
+  height: 150px;
+  width: 310px;
+}
+
+/* line 311, tiles.scss */
+.tile.tile-large {
+  height: 310px;
+  width: 310px;
+}

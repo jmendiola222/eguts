@@ -1,0 +1,67 @@
+<!--HEADER-->
+<header ng-controller="NavbarCtrl">
+    <div class="cnt_session">
+        <div class="container">
+            <ul>
+                <li>
+                    <span>
+                        <g:link action="userProfile">PAD&nbsp;</g:link>
+                    </span>
+                </li>
+                <li>
+                    ¡
+                    <g:message code="default.front.wellcome"/>
+                    <span>
+                       ${userName}
+                    </span>
+                    !
+                </li>
+                <li>
+                    <g:link controller='logout'>
+                        <i class="fa fa-power-off"></i>
+                        <g:message code="default.front.logout"/>
+                    </g:link>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="cnt_nav">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <g:link controller="Front" action="Index" class="logo">
+                        <asset:image src="logo.png" alt="EGUTS"/>
+                    </g:link>
+                    <button class="btn_nav">
+                        Menú
+                        <i class="glyphicon glyphicon-chevron-down"></i>
+                    </button>
+                </div>
+                <nav class="col-md-10 mobile_hide">
+                    <ul>
+                        <li>
+                            <a href="#?selectInstance=true" data-toggle="modal"
+                               data-target=".mdl_competence">Competencia</a>
+                        </li>
+                        <li>
+                            <g:link controller="Front" action="meetings"
+                                    class="${page != null && page == 'meetings' ? 'active' : ''}">Convenci&oacute;n</g:link>
+                        </li>
+                        <li>
+                            <g:link controller="Front" action="ambassadors"
+                                    class="${page != null && page == 'ambassadors' ? 'active' : ''}">Embajadores</g:link>
+                        </li>
+                        <li>
+                            <g:link controller="Front" action="files"
+                                    class="${page != null && page == 'files' ? 'active' : ''}">Archivos</g:link>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!--end HEADER-->
+

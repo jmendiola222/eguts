@@ -1,0 +1,1 @@
+<asset:javascript src="service/service.js" />

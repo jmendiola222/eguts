@@ -1,0 +1,142 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS file within this directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require angular-csp
+*= require font-awesome.min.css
+*= require bootstrap-3.2.css
+*= require custom
+*= require custom-personalData
+*= require front/tiles
+*= require_self
+*/
+
+/* PACE */
+.pace .pace-progress {
+	background: #29d;
+	position: fixed;
+	z-index: 2000;
+	top: 0;
+	left: 0;
+	height: 2px;
+	-webkit-transition: width 1s;
+	-moz-transition: width 1s;
+	-o-transition: width 1s;
+	transition: width 1s;
+}
+
+.pace-inactive {
+	display: none;
+}
+
+#select-instance-grid {
+	margin-top: 10px;
+}
+
+.page_eva-select-instance .tbl_custom th {
+	text-align: left !important;
+}
+
+.has-error {
+	border-color: #b94a48 !important;
+}
+
+.mdl_contact p, .mdl_contact  a, .mdl_contact  a:hover {
+	color: #434343 !important;
+}
+
+#evaluation-container .dropdown-menu a {
+	color: #333;
+}
+
+#evaluation-container .pagination a {
+	color: #2a6496;
+}
+
+.observable {
+	width: 15px;
+	height: 15px;
+}
+
+.observable-clickable {
+	cursor: pointer;
+}
+
+.observed {
+	background: transparent url("../images/eye.png") no-repeat center bottom;
+}
+
+.not-observed {
+	background: transparent url("../images/eye-slash.png") no-repeat center
+		bottom;
+}
+
+.observed-disabled {
+	background: transparent url("../images/eye_disabled.png") no-repeat
+		center bottom;
+}
+
+.not-observed-disabled {
+	background: transparent url("../images/eye-slash_disabled.png")
+		no-repeat center bottom;
+}
+
+.eva_question .btn {
+	text-transform: lowercase !important;
+}
+
+.eva_question .label.label-warning {
+	font-size: 10px !important;
+	text-transform: lowercase !important;
+}
+
+.btn.btn-observable-disabled {
+	color: #888888;
+	border-color: #888888;
+}
+
+/*---------- ERROR ----------*/
+.cnt_error {
+	width: 420px;
+	position: absolute;
+	top: 50%;
+	margin-top: -220px;
+	left: 50%;
+	margin-left: -210px;
+}
+
+.cnt_error img {
+	width: auto;
+	margin: 0 0 0 50px;
+	text-align: center;
+}
+
+.cnt_error label {
+	padding: 10px 0;
+}
+
+.cnt_error .actions {
+	text-align: center;
+	margin-top: 50px;
+}
+
+/*---------- BATTLE ----------*/
+
+.page_battle .banner i{
+	background: transparent url("../assets/logo_right_brown.png") no-repeat center bottom;
+}
+
+.google-visualization-orgchart-table {
+	border-collapse: separate;
+}
+
+.forgot_password {
+	cursor: pointer;
+	font-size: 14px;
+	padding-top: 12px;
+}
