@@ -1,4 +1,5 @@
-app.controller('EndPointCtrl', ['$scope', '$modal', 'EndPoint', 'BootstrapGridAPI', function($scope, $modal, EndPoint, BootstrapGridAPI) {
+app.controller('EndPointCtrl', ['$scope', '$modal', 'EndPoint', 'BootstrapGridAPI', 'PathUtils',
+    function($scope, $modal, EndPoint, BootstrapGridAPI, PathUtils) {
 
     $scope.columns = [{
         field : "name",
@@ -38,47 +39,11 @@ app.controller('EndPointCtrl', ['$scope', '$modal', 'EndPoint', 'BootstrapGridAP
     }
 
     $scope.newItem = function() {
-        $scope.edit();
+        PathUtils.goTo($scope.editUrl);
     }
 
     $scope.edit = function(item) {
-        $scope.alert = null;
-
-        var itemToEdit = new EndPoint();
-        var isNew = true;
-
-        if(angular.isDefined(item)) {
-            itemToEdit = EndPoint.get({id : item.id})
-            isNew = false;
-        }
-
-        var modalInstance = $modal
-            .open({
-                templateUrl : 'newEndPoint-template',
-                controller : "EditEndPointController",
-                resolve : {
-                    itemToEdit : function() { return itemToEdit; },
-                    isNew : function() { return isNew; }
-                }
-            });
-
-        modalInstance.result
-            .then(function(editedItem) {
-
-                var functionToCall = isNew ? "$save" : "$update";
-
-                editedItem[functionToCall](function() {
-                    $scope.errors = null;
-                    $scope.successTitle = "EndPoint guardado correctamente";
-                    $scope.showAlerts = true;
-                    BootstrapGridAPI.doRefresh();
-                }, function(response) {
-                    $scope.errors = response.data.errors;
-                    $scope.errorTitle = "Error al guardar el EndPoint"
-                    $scope.showAlerts = true;
-                });
-
-            });
+        PathUtils.goToUrlWithId($scope.editUrl, item);
     }
 
     $scope.onDeleteError = function(result, alerts) {
@@ -99,17 +64,171 @@ app.controller('EndPointCtrl', ['$scope', '$modal', 'EndPoint', 'BootstrapGridAP
 
 }]);
 
-app.controller('EditEndPointController', ['$scope', '$modalInstance', 'isNew', 'itemToEdit', function($scope, $modalInstance, isNew, itemToEdit) {
+app.controller('EditEndPointController', [
+        '$scope','$filter',	'PathUtils','EndPoint','$modal','BootstrapGridAPI',
+        function($scope, $filter, PathUtils, EndPoint, $modal, BootstrapGridAPI) {
 
-    $scope.isNew = isNew;
-    $scope.itemToEdit = itemToEdit;
+            var path = PathUtils.parseEdit();
+            $scope.isNewEndPoint = !path.isEdit;
+            $scope.itemToEdit = {
+                'businessName' : '',
+                'endPointElements' : []
+            };
 
-    $scope.ok = function() {
-        $modalInstance.close($scope.itemToEdit);
-    };
+            $scope.saving = false;
+            $scope.isEditable = true;
 
-    $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
-    };
+            $scope.endPointElementColumns = [{
+                field : "name",
+                name : "Nombre"
+            },{
+                field : "description",
+                name : "Descripcion"
+            },{
+                field : "type",
+                name : "Tipo",
+                customFilter : function(value, item) {return value.name;}
+            }
+            ];
 
-}]);
+            if (path.isEdit) {
+                EndPoint.get(
+                    {
+                        id : path.id
+                    },
+                    function(response) {
+                        $scope.itemToEdit = response;
+                        $scope.loaded = true;
+                    },
+                    function(response) {
+                        //TODO
+                    }
+                );
+            } else {
+                $scope.loaded = true;
+            }
+
+            var getFilters = function() {
+                return {
+                    sort : "name",
+                    order : "asc"
+                };
+            };
+
+            $scope.filters = getFilters();
+
+            $scope.cleanFilters = function() {
+                $scope.filters = getFilters();
+                $scope.filter();
+            };
+
+            $scope.filter = function() {
+                $scope.alert = null;
+                BootstrapGridAPI.doResetPagination();
+            };
+
+            $scope.save = function() {
+                $scope.saving = true;
+                $scope.showAlerts = false;
+
+                var functionToCall = $scope.isNewEndPoint ? "save" : "update";
+                EndPoint[functionToCall]
+                (
+                    $scope.itemToEdit,
+                    function(response) {
+
+                        $scope.errors = null;
+                        $scope.successTitle = 'EndPoint guardado correctamente.';
+                        $scope.showAlerts = true;
+
+                        PathUtils.updateId(response.id);
+                        $scope.itemToEdit.id = response.id;
+                        $scope.saving = false;
+                        $scope.isNewEndPoint = false;
+                    },
+                    function(response) {
+                        $scope.errors = [];
+                        if (angular.isObject(response.data) && angular.isObject(response.data.errors)){
+                            $scope.errors = response.data.errors;
+                        }
+
+                        $scope.errorTitle = 'Error al guardar el EndPoint.';
+                        $scope.showAlerts = true;
+                        $scope.saving = false;
+
+                    });
+            };
+
+            $scope.deleteEndPointElement = function(item){
+                //TODO
+            };
+
+            $scope.addEndPointElement = function(item) {
+                $scope.alert = null;
+
+                var itemToEdit = { type : { name: ''}};
+
+                var isNew = true;
+
+                if (angular.isDefined(item)) {
+                    angular.copy(item, itemToEdit);
+                    isNew = false;
+                }
+
+                var modalInstance = $modal
+                    .open({
+                        templateUrl : 'endPointElement-template',
+                        controller : "EditEndPointElementController",
+                        resolve : {
+                            itemToEdit : function() {
+                                return itemToEdit;
+                            },
+                            isNew : function() {
+                                return isNew;
+                            }
+                        }
+                    });
+
+                modalInstance.result.then(function(editedItem) {
+                    if (isNew)
+                        $scope.itemToEdit.endPointElements.push(editedItem);
+                    else
+                        item = angular.copy(editedItem, item);
+                });
+            };
+
+            $scope.addUrlMatch = function(item) {
+                $scope.alert = null;
+
+
+            };
+        }
+    ]);
+
+app.controller('EditEndPointElementController',
+    [
+        '$scope',
+        '$filter',
+        '$modalInstance',
+        'isNew',
+        'itemToEdit',
+        function($scope, $filter, $modalInstance, isNew,
+                 itemToEdit) {
+
+            $scope.isNew = isNew;
+            if (isNew) {
+                $scope.itemToEdit = { };
+            } else {
+                $scope.itemToEdit = itemToEdit;
+            }
+
+            $scope.ok = function() {
+                $modalInstance.close($scope.itemToEdit);
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+        }
+    ]
+);

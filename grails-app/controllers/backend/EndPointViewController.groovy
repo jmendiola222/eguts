@@ -4,4 +4,7 @@ class EndPointViewController {
 
     def index = {
     }
+
+    def edit = {
+    }
 }

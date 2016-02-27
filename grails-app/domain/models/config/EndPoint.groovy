@@ -13,7 +13,6 @@ class EndPoint {
     String target
     boolean isPublic = true
     private Class<IEndPointParserStgy> parseStrategyClass
-    List<String> urlMatchs
 
     String emailTemplate
 
@@ -27,6 +26,7 @@ class EndPoint {
 
     static hasMany = [
         endPointElements: EndPointElement,
+        urlMatchs: MatchCriteria
     ]
 
     static constraints = {

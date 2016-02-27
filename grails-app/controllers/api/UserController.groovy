@@ -2,6 +2,7 @@ package api
 
 import helpers.MailNotifierHelper
 import helpers.RestSearchHelper
+import helpers.SecurityConstants
 import models.user.User
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
@@ -12,7 +13,7 @@ import javax.transaction.Transactional
 
 import static org.springframework.http.HttpStatus.*
 
-@Secured(['ROLE_ADMIN','ROLE_SYSADMIN'])
+@Secured(SecurityConstants.HAS_SYS_ADMIN_ROLE)
 class UserController extends PaginableRestController {
 
 	private SpringSecurityService springSecurityService
@@ -27,7 +28,7 @@ class UserController extends PaginableRestController {
 	}
 
 	@Override
-	@Secured(['ROLE_ADMIN', 'ROLE_SYSADMIN', 'ROLE_USER'])
+	@Secured(SecurityConstants.HAS_APP_ROLE)
 	def show() {
 		if(!isAllowToViewUser(params.id))
 			return;
@@ -65,7 +66,7 @@ class UserController extends PaginableRestController {
 
 	@Transactional
 	@Override
-	@Secured(['ROLE_ADMIN', 'ROLE_SYSADMIN', 'ROLE_USER'])
+	@Secured(SecurityConstants.HAS_APP_ROLE)
 	def update() {
 		def parameters = getParametersToBind()
 		fillToken(parameters)
