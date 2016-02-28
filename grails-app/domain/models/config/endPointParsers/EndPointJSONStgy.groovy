@@ -20,10 +20,13 @@ class EndPointJSONStgy implements IEndPointParserStgy{
 
         def start = DateUtils.now();
 
-        /*def resp = rest.get("https://www.kimonolabs.com/api/d95rruok?apikey=Yj3HnrAbhZibWvWeozjQWHeDDdkvkhiv"){
+        def resp = rest.get(subscription.url){
             contentType "application/json"
         }
-        render resp.json as JSON*/
+        def json = resp.json
+
+        log.info json
+
         //TODO
         def now = DateUtils.nowAsDateTime();
         String[] itemList = ["1","2","3", now.secondOfDay, now.secondOfMinute];

@@ -63,9 +63,9 @@ class PaginableRestController<T> extends JsonRestfulController<T> {
 
         String fields = params.get("fields");
         if (fields != null) {
-            ok(listed*.jsonPart(include: fields.tokenize(',')))
+            jsonOk(listed*.jsonPart(include: fields.tokenize(',')))
         } else {
-            ok(listed)
+            jsonOk(listed)
         }
     }
 
@@ -75,9 +75,9 @@ class PaginableRestController<T> extends JsonRestfulController<T> {
 
         String fields = params.get("fields");
         if (fields != null) {
-            ok(obj.jsonPart(include: fields.tokenize(',')))
+            jsonOk(obj.jsonPart(include: fields.tokenize(',')))
         } else {
-            ok(obj)
+            jsonOk(obj)
         }
     }
 

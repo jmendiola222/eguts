@@ -3,7 +3,7 @@
 <head>
 	<meta name="layout" content="main" />
 </head>
-<body titulo="EndPoints" subtitulo="Administrar"
+<body titulo="EndPoints" subtitulo="${message(code:'default.administrate.label')}"
 	  icono="fa fa-lg fa-fw fa-exchange ">
 <div ng-controller="EndPointCtrl" class="ng-cloak col-sm-12">
 	<div ng-init="editUrl = '${createLink(controller: 'EndPointView', action: 'edit' , mapping: 'backendMapping')}/'"></div>
@@ -44,7 +44,7 @@
 				<g:form useToken="true" action="delete" controller="endPoint" name="form" class="form-horizontal">
 				</g:form>
 				<div grid columns="columns"
-					 no-items-message="No se encontraron endPointos"
+					 no-items-message="<g:message code="default.items.not.found.message" args='["${message(code:'endPoint.list.label')}"]'/>"
 					 resource="gridResource" client-side-pagination="false"
 					 allow-edit="true" allow-delete="true" page-size="20"
 					 allow-details="false" filters="filters"

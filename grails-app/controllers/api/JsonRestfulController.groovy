@@ -69,7 +69,7 @@ class JsonRestfulController<T> {
      * @return The rendered resource or a 404 if it doesn't exist
      */
     def show() {
-        ok(queryForResource(params.id))
+        jsonOk(queryForResource(params.id))
     }
 
     /**
@@ -79,7 +79,7 @@ class JsonRestfulController<T> {
         if(handleReadOnly()) {
             return
         }
-        ok(createResource())
+        jsonOk(createResource())
     }
 
     /**
@@ -103,7 +103,7 @@ class JsonRestfulController<T> {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: "${resourceName}.label".toString(), default: resourceClassName), instance.id])
-                ok(instance)
+                jsonOk(instance)
             }
             '*' {
                 response.addHeader(HttpHeaders.LOCATION,
@@ -120,7 +120,7 @@ class JsonRestfulController<T> {
         if(handleReadOnly()) {
             return
         }
-        ok(queryForResource(params.id))
+        jsonOk(queryForResource(params.id))
     }
 
     /**
@@ -150,7 +150,7 @@ class JsonRestfulController<T> {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: "${resourceClassName}.label".toString(), default: resourceClassName), instance.id])
-                ok(instance)
+                jsonOk(instance)
             }
             '*'{
                 response.addHeader(HttpHeaders.LOCATION,
@@ -158,7 +158,7 @@ class JsonRestfulController<T> {
                                 resource: this.controllerName, action: 'show',id: instance.id, absolute: true,
                                 namespace: hasProperty('namespace') ? this.namespace : null ))
 
-                ok(instance)
+                jsonOk(instance)
             }
         }
     }
@@ -282,11 +282,11 @@ class JsonRestfulController<T> {
     /************* ADITIONALS ****************/
 
 
-    protected void ok(){
-        render(status: HttpStatus.OK, text: "")
+    protected void ok(String message = ""){
+        render(status: HttpStatus.OK, text: message)
     }
 
-    protected void ok(Object toJSON){
+    protected void jsonOk(Object toJSON){
         response.status = HttpStatus.OK.value()
         render toJSON as JSON
     }

@@ -3,6 +3,7 @@ package api
 import commands.CreateBaseSubscriptionCommand
 import grails.plugin.springsecurity.annotation.Secured
 import helpers.Const
+import helpers.DateUtils
 import helpers.RestSearchHelper
 import models.Subscription
 import models.user.Role
@@ -32,7 +33,8 @@ class SubscriptionController extends PaginableRestController {
 		if(endPoint == null)
 			return error(message(code:'subscription.error.non.endpoint'))
 
-		def subscription = new Subscription(url: command.url, endPoint : endPoint, user : user)
+		def subscription = new Subscription(url: command.url, endPoint : endPoint,
+				subscriber : user, startDate : DateUtils.now())
 
 		if (subscription.hasErrors()) {
 			errors(subscription.errors)

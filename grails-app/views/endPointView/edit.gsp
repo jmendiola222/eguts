@@ -91,6 +91,24 @@
 					</div>
 				</article>
 			</div>
+			<div class="row">
+				<article class="col-sm-12">
+					<div class="">
+						<h3><g:message code="endPoint.urlMatchs.label" /></h3>
+					</div>
+					<div class="">
+						<div class="grid-container">
+							<div grid columns="endPointUrlMatchsColumns" bind-once="false"
+								 no-items-message="<g:message code="default.items.not.found.message" args='["${message(code:'endPoint.urlMatchs.label')}"]'/>"
+								 resource="itemToEdit.urlMatchs"
+								 on-delete-selected="deleteEndPointUrlMatch(item)"
+								 client-side-pagination="true" allow-edit="true"
+								 allow-delete="true" page-size="20" allow-details="false"
+								 get-delete-confirmation-msg="'${message(code:'endPoint.urlMatchs.delete.message')}'"></div>
+						</div>
+					</div>
+				</article>
+			</div>
 			<div class="page-footer margin-top-10">
 				<g:link class="btn btn-info" controller="EndPointView"
 						mapping="backendMapping"><g:message code="default.button.back.label" /></g:link>
@@ -153,6 +171,42 @@
 								ng-show="submitted && form.selectEvaluationCategory.$error.required"
 								class="input-group-addon" tooltip-append-to-body="true"
 								tooltip="${message(code:'default.required.message')}">
+							<i class="glyphicon glyphicon-remove-circle"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+		</g:form>
+		<div class="modal-footer">
+			<button class="btn btn-success" ng-disabled="submitted === true && form.inputName.$invalid" ng-click="submitted = true; form.inputName.$invalid || ok();">
+				<g:message code="default.button.save.label" />
+			</button>
+			<button class="btn btn-danger" ng-click="cancel()"><g:message code="default.button.cancel.label" /></button>
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="endPointUrlMatch-template">
+<div class="modal-content">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="cancel()">
+			<span aria-hidden="true">&times;</span>
+			<span class="sr-only">Close</span>
+		</button>
+		<h4 ng-if="isNew" class="modal-title"><g:message code="default.add.label" args="${[message(code:'matchCriteria.label')]}" /></h4>
+		<h4 ng-if="!isNew" class="modal-title"><g:message code="default.edit.label" args="${[message(code:'matchCriteria.label')]}" /></h4>
+	</div>
+	<div class="modal-body">
+		<g:form useToken="true" action="update" controller="matchCriteria" name="form" id="matchCriteriaView" class="form-horizontal">
+
+			<div class="form-group" ng-class="{'has-error' : submitted && form.inputName.$invalid}">
+				<label class="col-md-2 control-label"><g:message code="matchCriteria.value.label" /></label>
+				<div class="col-md-10">
+					<div class="input-group col-md-12">
+						<input class="form-control" name="inputName" type="text" ng-model="itemToEdit.value" required>
+						<span ng-show="submitted && form.inputName.$error.required"
+							  class="input-group-addon" tooltip-append-to-body="true"
+							  tooltip="${message(code:'default.required.message')}">
 							<i class="glyphicon glyphicon-remove-circle"></i>
 						</span>
 					</div>

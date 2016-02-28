@@ -33,9 +33,9 @@
 			</li>
 
 			<li>
-				<g:link controller="SubscrptionView" mapping="backendMapping">
+				<g:link controller="SubscriptionView" mapping="backendMapping">
 					<i class="fa fa-lg fa-fw fa-envelope "></i>
-					<span class="menu-item-parent"><g:message code="subscrption.list.label"/></span>
+					<span class="menu-item-parent"><g:message code="subscription.list.label"/></span>
 				</g:link>
 			</li>
 

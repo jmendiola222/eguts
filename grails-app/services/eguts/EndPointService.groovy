@@ -8,7 +8,7 @@ class EndPointService {
 
     def getEndPointByUrl(String url) {
         return EndPoint.findAll().findResult {
-            it.urlMatchs?.any { url.matches(it) } ? it : null
+            it.urlMatchs?.any { url.matches(it.value) } ? it : null
         }
     }
 }

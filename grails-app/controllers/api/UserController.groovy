@@ -32,7 +32,7 @@ class UserController extends PaginableRestController {
 	def show() {
 		if(!isAllowToViewUser(params.id))
 			return;
-		ok(queryForResource(params.id))
+		jsonOk(queryForResource(params.id))
 	}
 
 	private boolean isAllowToViewUser(String userId){

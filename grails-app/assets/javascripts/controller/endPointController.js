@@ -71,8 +71,8 @@ app.controller('EditEndPointController', [
             var path = PathUtils.parseEdit();
             $scope.isNewEndPoint = !path.isEdit;
             $scope.itemToEdit = {
-                'businessName' : '',
-                'endPointElements' : []
+                'endPointElements' : [],
+                'urlMatchs' : []
             };
 
             $scope.saving = false;
@@ -87,9 +87,14 @@ app.controller('EditEndPointController', [
             },{
                 field : "type",
                 name : "Tipo",
-                customFilter : function(value, item) {return value.name;}
+                customFilter : function(value, item) { return angular.isDefined(value.name) ? value.name: value; }
             }
             ];
+
+            $scope.endPointUrlMatchsColumns = [{
+                field : "value",
+                name : "Valor"
+            }];
 
             if (path.isEdit) {
                 EndPoint.get(
@@ -163,6 +168,10 @@ app.controller('EditEndPointController', [
                 //TODO
             };
 
+            $scope.deleteEndPointUrlMatch = function(item){
+                //TODO
+            };
+
             $scope.addEndPointElement = function(item) {
                 $scope.alert = null;
 
@@ -199,6 +208,36 @@ app.controller('EditEndPointController', [
 
             $scope.addUrlMatch = function(item) {
                 $scope.alert = null;
+
+                var itemToEdit = { value : ''};
+
+                var isNew = true;
+
+                if (angular.isDefined(item)) {
+                    angular.copy(item, itemToEdit);
+                    isNew = false;
+                }
+
+                var modalInstance = $modal
+                    .open({
+                        templateUrl : 'endPointUrlMatch-template',
+                        controller : "EditEndPointElementController",
+                        resolve : {
+                            itemToEdit : function() {
+                                return itemToEdit;
+                            },
+                            isNew : function() {
+                                return isNew;
+                            }
+                        }
+                    });
+
+                modalInstance.result.then(function(editedItem) {
+                    if (isNew)
+                        $scope.itemToEdit.urlMatchs.push(editedItem);
+                    else
+                        item = angular.copy(editedItem, item);
+                });
 
 
             };
