@@ -37,10 +37,13 @@ class EndPoint {
         emailTemplate(nullable: true, blank: false)
         endPointElements nullable: false, validator: { endPointElement, obj ->
             endPointElement.every { it.validate() }
-            if(endPointElement.findAll { it.type == EndPointElementType.ELEMENT_ID }.size() != 1)
-                return false;
-            if(endPointElement.findAll { it.type == EndPointElementType.ELEMENT_SELECTOR }.size() != 1)
-                return false;
+            //TODO i18n
+            def ids = endPointElement.findAll { it.type == EndPointElementType.ELEMENT_ID }.size()
+            if(ids != 1)
+                return ids == 0 ? ['endPoint.element.id.empty'] : ['endPoint.element.id.duplicated']
+            def selectors = endPointElement.findAll { it.type == EndPointElementType.ELEMENT_SELECTOR }.size()
+            if(selectors != 1)
+                return selectors == 0 ? ['endPoint.element.selector.empty'] : ['endPoint.element.selector.duplicated']
         }
     }
 

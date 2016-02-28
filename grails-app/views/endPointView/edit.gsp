@@ -147,7 +147,7 @@
 								  name="selectEvaluationCategory"
 								  from="${models.config.EndPointElementType.values()}"
 								  valueMessagePrefix="ENUM.EndPointElementType"
-								  ng-model="itemToEdit.type.name" required="required"
+								  ng-model="itemToEdit.type" required="required"
 						/>
 						<span
 								ng-show="submitted && form.selectEvaluationCategory.$error.required"
