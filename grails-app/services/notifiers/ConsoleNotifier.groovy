@@ -11,10 +11,9 @@ class ConsoleNotifier implements INotifier {
 
     @Override
     def notify(SubscriptionResult subscriptionResult){
-        printf("Subscription's notifications (%s): %s\n\n",  subscriptionResult.id, subscriptionResult.description)
+        printf("Subscription's notifications (id= " + subscriptionResult.id+ ")\n\n"  )
         for(def item in subscriptionResult.getUpdates()){
             printf("\tNew Item: %s\n", item);
         }
     }
-
 }

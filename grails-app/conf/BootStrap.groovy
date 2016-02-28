@@ -19,50 +19,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        def sysAdminRole = Role.findByAuthority(Const.ROLE_SYSADMIN) ?: new Role(authority: Const.ROLE_SYSADMIN, description: 'SysAdmin').save(failOnError: true)
-        def adminRole = Role.findByAuthority(Const.ROLE_ADMIN) ?: new Role(authority: Const.ROLE_ADMIN, description: 'Administrador').save(failOnError: true)
-        def userRole = Role.findByAuthority(Const.ROLE_USER) ?: new Role(authority: Const.ROLE_USER, description: 'User').save(failOnError: true)
-        def subscriberRole = Role.findByAuthority(Const.ROLE_SUBSCRIBER) ?: new Role(authority: Const.ROLE_SUBSCRIBER, description: 'Subscriber').save(failOnError: true)
 
-        def sysAdminUsr = User.findByUsername("sysadmin");
-        if (sysAdminUsr == null) {
-            sysAdminUsr = new User(email: 'sysadmin@eguts.com', username: 'sysadmin', password: 'eguts2014', enabled: true, role: sysAdminRole);
-            sysAdminUsr.init = true;
-
-            sysAdminUsr.save(failOnError: true, flush: true);
-        }
-        def adminUsr = User.findByUsername("admin") ?: new User(email: 'admin@eguts.com', username: 'admin', password: 'eguts2014', enabled: true, role: adminRole).save(failOnError: true)
-        def testUsr = User.findByUsername("test") ?: new User(email: 'test@eguts.com', username: 'test', password: 'test2014', enabled: true, role: userRole, userProfile: new UserProfile()).save(failOnError: true)
-
-        //-------------------------
-
-        def mercadoLibreEP = EndPoint.findByName("Mercado Libre");
-        if(!mercadoLibreEP){
-            mercadoLibreEP = new EndPoint(
-                    name : "Mercado Libre",
-                    target : "https://www.kimonolabs.com/api/d95rruok?apikey=Yj3HnrAbhZibWvWeozjQWHeDDdkvkhiv"
-            )
-            def matcher = new MatchCriteria(value: ".*.mercadolibre.com.*")
-            mercadoLibreEP.addToUrlMatchs(matcher)
-
-            mercadoLibreEP.endPointElements = [
-                new EndPointElement(type: EndPointElementType.ELEMENT_SELECTOR, name: "url", endPoint: mercadoLibreEP),
-                new EndPointElement(type: EndPointElementType.ELEMENT_ID, name: "url", endPoint: mercadoLibreEP),
-                new EndPointElement(type: EndPointElementType.NAME, name: "titulo.text", endPoint: mercadoLibreEP),
-                new EndPointElement(type: EndPointElementType.LINK, name: "url", endPoint: mercadoLibreEP),
-                //new EndPointElement(type: EndPointElementType.PHOTO, name: "c", endPoint: mercadoLibreEP),
-                //new EndPointElement(type: EndPointElementType.PRICE, name: "d", endPoint: mercadoLibreEP),
-                new EndPointElement(type: EndPointElementType.DESCRIPTOR, name: "anio", description : "anio", endPoint: mercadoLibreEP)
-            ]
-            mercadoLibreEP.save(failOnError: true)
-        };
-
-        String url = "http://autos.mercadolibre.com.ar/nissan/pathfinder/_YearRange_1992-2003_PriceRange_0-150000";
-        def subs = Subscription.findBySubscriberAndUrl(testUsr, url)
-        if(!subs){
-            Subscription subscription = new Subscription(subscriber: testUsr, url: url, endPoint: mercadoLibreEP, status: SubscriptionStatus.ACTIVE, startDate: DateUtils.now())
-            subscription.save(failOnError: true)
-        }
 
         bootstrapService.init();
 

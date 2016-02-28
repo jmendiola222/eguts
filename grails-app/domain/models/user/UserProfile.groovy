@@ -1,15 +1,23 @@
 package models.user
 
 import grails.util.Holders
-import notifiers.ConsoleNotifier;
+import notifiers.ConsoleNotifier
+import notifiers.FileNotifier;
 import notifiers.INotifier
 
 class UserProfile {
 
+    //UserProfileStatus status = UserProfileStatus.ACTIVE
+
     public List<INotifier> getNotifiers(){
-        def myNotifier = Holders.grailsApplication.mainContext.getBean(ConsoleNotifier);
+
         def result = new LinkedList<INotifier>()
+
+        def myNotifier = Holders.grailsApplication.mainContext.getBean(ConsoleNotifier);
         result.add(myNotifier)
+        myNotifier = Holders.grailsApplication.mainContext.getBean(FileNotifier);
+        result.add(myNotifier)
+
         return result;
     }
 
@@ -19,5 +27,9 @@ class UserProfile {
         notifierClass cascade: 'all-delete-orphan'
     }
     */
+}
 
+public enum UserProfileStatus {
+    ACTIVE,
+    INACTIVE
 }

@@ -25,11 +25,19 @@ class EndPointJSONStgy implements IEndPointParserStgy{
         }
         def json = resp.json
 
-        log.info json
+        def itemList = []
 
-        //TODO
-        def now = DateUtils.nowAsDateTime();
-        String[] itemList = ["1","2","3", now.secondOfDay, now.secondOfMinute];
+        def selector = subscription.getEndPoint().elementSelector.name
+        def identifier = subscription.getEndPoint().elementID.name
+        def items = json."${selector}"
+        println "Items: " + items
+
+        items.each {
+            def itemId = it."${identifier}"
+            println "Item Id: " + itemId
+            itemList.push(itemId)
+        }
+
         def result = new SubscriptionResult(
                 subscription : subscription,
                 lastStart: start,

@@ -13,7 +13,7 @@ app.controller('SubscriptionCtrl', ['$scope', '$modal', 'Subscription', 'Bootstr
         return {
             sort : "url",
             order : "asc",
-            fields: "id,url,subs"
+            fields: "id,url"
         };
     };
 

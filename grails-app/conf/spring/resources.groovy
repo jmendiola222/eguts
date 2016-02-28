@@ -86,8 +86,8 @@ beans = {
     loginSuccessEventListener(LoginSuccessEventListener) {}
 
     consoleNotifier(ConsoleNotifier) {}
-
     emailNotifier(EmailNotifier) {}
+    fileNotifier(FileNotifier) {}
 
     rest(grails.plugins.rest.client.RestBuilder)
 

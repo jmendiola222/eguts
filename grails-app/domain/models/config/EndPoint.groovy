@@ -17,11 +17,11 @@ class EndPoint {
     String emailTemplate
 
     public EndPointElement getElementSelector(){
-        return endPointElements.find({ type : EndPointElementType.ELEMENT_ID})
+        return endPointElements.find({ it.type == EndPointElementType.ELEMENT_SELECTOR })
     }
 
     public EndPointElement getElementID(){
-        return endPointElements.find({ type : EndPointElementType.ELEMENT_SELECTOR})
+        return endPointElements.find({ it.type == EndPointElementType.ELEMENT_ID })
     }
 
     static hasMany = [
