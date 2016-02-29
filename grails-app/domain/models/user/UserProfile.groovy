@@ -2,6 +2,7 @@ package models.user
 
 import grails.util.Holders
 import notifiers.ConsoleNotifier
+import notifiers.EmailNotifier
 import notifiers.FileNotifier;
 import notifiers.INotifier
 
@@ -16,6 +17,8 @@ class UserProfile {
         def myNotifier = Holders.grailsApplication.mainContext.getBean(ConsoleNotifier);
         result.add(myNotifier)
         myNotifier = Holders.grailsApplication.mainContext.getBean(FileNotifier);
+        result.add(myNotifier)
+        myNotifier = Holders.grailsApplication.mainContext.getBean(EmailNotifier);
         result.add(myNotifier)
 
         return result;

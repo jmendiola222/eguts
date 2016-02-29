@@ -117,7 +117,7 @@ environments {
             mail {
                 host = "smtp.mandrillapp.com"
                 port = 587
-                username = "egutsapp@gmail.com"
+                username = "averbner@atixlabs.com"
                 password = "G-UiXfBJFAeom-FaVlP3Hg"
                 props = ["mail.smtp.starttls.enable": "true",
                          "mail.smtp.port"           : "587"]

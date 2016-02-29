@@ -1,6 +1,8 @@
 package notifiers
 
+import helpers.MailNotifierHelper
 import models.result.SubscriptionResult
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 /**
@@ -9,9 +11,13 @@ import org.springframework.stereotype.Component
 @Component
 class EmailNotifier implements INotifier{
 
+    @Autowired
+    MailNotifierHelper mailNotifierHelper
+
     @Override
     def notify(SubscriptionResult subscriptionResult){
-        //TODO
+
+        mailNotifierHelper.sendUserUpdates(subscriptionResult.getSubscription().getSubscriber(), subscriptionResult);
     }
 
 }
