@@ -146,6 +146,8 @@ class JsonRestfulController<T> {
             return
         }
 
+        beforeUpdate(instance)
+
         instance.save flush:true
         request.withFormat {
             form multipartForm {
@@ -281,6 +283,7 @@ class JsonRestfulController<T> {
 
     /************* ADITIONALS ****************/
 
+    protected void beforeUpdate(instance){ }
 
     protected void ok(String message = ""){
         render(status: HttpStatus.OK, text: message)

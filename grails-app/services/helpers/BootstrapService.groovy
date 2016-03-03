@@ -62,7 +62,7 @@ class BootstrapService {
 
         /********************************************/
 
-        def localEP = EndPoint.findByName("Local");
+        /*def localEP = EndPoint.findByName("Local");
         if(!localEP){
             localEP = new EndPoint(
                     name : "Local",
@@ -81,7 +81,7 @@ class BootstrapService {
                     //new EndPointElement(type: EndPointElementType.DESCRIPTOR, name: "anio", description : "anio", localEP: mercadoLibreEP)
             ]
             localEP.save(failOnError: true)
-        };
+        };*/
 
         url = "http://www.jmendiola.com:8882/api/v1/ml-autos-vw-gol";
         subs = Subscription.findBySubscriberAndUrl(testUsr, url)
