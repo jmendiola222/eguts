@@ -7,13 +7,17 @@ app.controller('SubscriptionCtrl', ['$scope', '$modal', 'Subscription', 'Bootstr
     },{
         field : "url",
         name : "Url"
+    },{
+        field : "status",
+        name : "Estado",
+        customFilter : function(value, item) { return angular.isDefined(value.name) ? value.name: value; }
     } ];
 
     var getFilters = function() {
         return {
             sort : "url",
             order : "asc",
-            fields: "id,url"
+            fields: "id,url,status"
         };
     };
 

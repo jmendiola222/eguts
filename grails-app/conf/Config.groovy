@@ -131,27 +131,39 @@ environments {
 }
 
 // log4j configuration
-log4j.main = {
-    fatal  'org.hibernate.tool.hbm2ddl.SchemaExport'
-    // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+log4j = {
+    appenders {
+        console name: 'stdout', layout: pattern(conversionPattern: '%d{yyyy-MM-dd/HH:mm:ss.SSS} [%t] %x %-5p %c{2} - %m%n')
+        environments {
+            development {
+                rollingFile name: "myAppender", maxFileSize: "1024KB", file: "/tmp/eguts.log"
+                rollingFile name:'auditAppender',
+                        file: "/tmp/audit.eguts.log",
+                        maxFileSize:"1024KB", maxBackupIndex: 15,
+                        layout: pattern(conversionPattern: '%d{yyyy-MM-dd HH:mm:ss.SSS} - %m%n')
+            }
+        }
+    }
 
-    //debug 'org.springframework.security'
+    info 'auditAppender' : 'auditLogger', additivity:false
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+    root {
+        info 'stdout','myAppender'
+    }
+
+    error 'org.codehaus.groovy.grails.web.servlet',        // controllers
+            'org.codehaus.groovy.grails.web.pages',          // GSP
+            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+            'org.codehaus.groovy.grails.commons',            // core / classloading
+            'org.codehaus.groovy.grails.plugins',            // plugins
+            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+            'org.springframework',
+            'org.hibernate',
+            'net.sf.ehcache.hibernate'
+
+    info "grails.app"
 }
 
 // Avoid assets minify
@@ -219,6 +231,6 @@ grails.plugin.databasemigration.updateOnStartFileNames = ['changelog.groovy']
 app.notifications.from = "info@egutsapp.com.ar"
 app.notifications.reminderDays = 3
 
-app.subscription.service.iterMins = 5 //The iteration process sleep time
-app.subscription.refresh.iterMins = 15 //Time between same subscription refresh
+app.subscription.service.iterMins = 1 //The iteration process sleep time
+app.subscription.refresh.iterMins = 1 //Time between same subscription refresh
 

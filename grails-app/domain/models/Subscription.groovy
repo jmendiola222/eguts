@@ -12,7 +12,7 @@ class Subscription {
     Date startDate
     Date endDate
 
-    SubscriptionStatus status = SubscriptionStatus.PENDING
+    SubscriptionStatus status = SubscriptionStatus.ACTIVE
 
     EndPoint endPoint
 

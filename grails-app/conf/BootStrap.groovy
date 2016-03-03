@@ -8,11 +8,9 @@ class BootStrap {
 
     def init = { servletContext ->
 
-
-
         bootstrapService.init();
 
-        //runBackgroundService();
+        runBackgroundService();
     }
 
     def destroy = {
@@ -26,19 +24,19 @@ class BootStrap {
 
         Thread thread = new Thread()
         def iterMins = grailsApplication.config.app.subscription.service.iterMins;
-        def iterMillis = iterMins * 60 * 60;
+        def iterMillis = iterMins * 60 * 1000;
         def diffInMillis = 0;
 
         thread.start {
             while(runBackgroundService) {
                 try {
-                    def startTime = DateUtils.nowAsDateTime();
                     def sleepTime = Math.max(iterMillis - diffInMillis, 1);
                     Thread.sleep(sleepTime);
+                    def startTime = DateUtils.nowAsDateTime();
                     log.info("Subscription service start")
                     subscriptionRunnerService.run();
                     diffInMillis = DateUtils.nowAsDateTime().getMillis() - startTime.getMillis();
-                    log.info("Subscription service end. Took(ms): " + diffInMillis)
+                    log.info("Subscription service end. Took(sec): " + (diffInMillis / 1000))
                 }catch(Exception ex){
                     log.error("Error in service iteration", ex)
                 }

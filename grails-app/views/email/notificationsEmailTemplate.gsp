@@ -23,6 +23,11 @@
 						<g:each var="item" in="${subscriptionResult.resultItemDTOs}">
 							<tr>
 								<td width="10%"></td>
+								<g:if test="${item.photo}">
+									<td width="40px" height="40px">
+										<img width="40px" height="40px" src="${item.photo}">
+									</td>
+								</g:if>
 								<td width="75%">
 									<g:if test="${item.link}">
 										<a href="${item.link}">

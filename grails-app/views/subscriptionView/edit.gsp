@@ -64,42 +64,6 @@
 					</div>
 				</div>
 			</g:form>
-			<div class="row">
-				<article class="col-sm-12">
-					<div class="">
-						<h3><g:message code="subscription.subscriptionElements.label" /></h3>
-					</div>
-					<div class="">
-						<div class="grid-container">
-							<div grid columns="subscriptionElementColumns" bind-once="false"
-								 no-items-message="<g:message code="default.items.not.found.message" args='["${message(code:'subscription.subscriptionElements.label')}"]'/>"
-								 resource="itemToEdit.subscriptionElements"
-								 on-delete-selected="deleteSubscriptionElement(item)"
-								 client-side-pagination="true" allow-edit="true"
-								 allow-delete="true" page-size="20" allow-details="false"
-								 get-delete-confirmation-msg="'${message(code:'subscription.subscriptionElements.delete.message')}'"></div>
-						</div>
-					</div>
-				</article>
-			</div>
-			<div class="row">
-				<article class="col-sm-12">
-					<div class="">
-						<h3><g:message code="subscription.urlMatchs.label" /></h3>
-					</div>
-					<div class="">
-						<div class="grid-container">
-							<div grid columns="subscriptionUrlMatchsColumns" bind-once="false"
-								 no-items-message="<g:message code="default.items.not.found.message" args='["${message(code:'subscription.urlMatchs.label')}"]'/>"
-								 resource="itemToEdit.urlMatchs"
-								 on-delete-selected="deleteSubscriptionUrlMatch(item)"
-								 client-side-pagination="true" allow-edit="true"
-								 allow-delete="true" page-size="20" allow-details="false"
-								 get-delete-confirmation-msg="'${message(code:'subscription.urlMatchs.delete.message')}'"></div>
-						</div>
-					</div>
-				</article>
-			</div>
 			<div class="page-footer margin-top-10">
 				<g:link class="btn btn-info" controller="SubscriptionView"
 						mapping="backendMapping"><g:message code="default.button.back.label" /></g:link>

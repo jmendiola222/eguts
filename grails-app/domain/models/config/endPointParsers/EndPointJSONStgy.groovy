@@ -32,23 +32,22 @@ class EndPointJSONStgy implements IEndPointParserStgy{
         def selector = subscription.getEndPoint().elementSelector.name
         def identifier = subscription.getEndPoint().elementID.name
         def items = json."${selector}"
-        println "Items: " + items
 
-        items.each {
-            def itemId = it."${identifier}"
-            println "Item Id: " + itemId
-            itemList.push(itemId)
+        if(items){
+            items.each {
+                def itemId = it."${identifier}"
+                itemList.push(itemId)
+            }
         }
 
         def result = new SubscriptionResult(
-                data: items,
                 subscription : subscription,
                 lastStart: start,
                 lastEnd: DateUtils.now(),
                 status: SubscriptionResultStatus.OK,
                 itemIds: itemList
         )
-        result.data = items;
+        result.data = items
         return result;
     }
 
