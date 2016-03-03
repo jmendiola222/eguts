@@ -46,7 +46,7 @@ class BootstrapService {
                     new EndPointElement(type: EndPointElementType.ELEMENT_ID, name: "url", endPoint: mercadoLibreEP),
                     new EndPointElement(type: EndPointElementType.NAME, name: "titulo.text", endPoint: mercadoLibreEP),
                     new EndPointElement(type: EndPointElementType.LINK, name: "url", endPoint: mercadoLibreEP),
-                    new EndPointElement(type: EndPointElementType.PHOTO, name: "c", endPoint: mercadoLibreEP),
+                    new EndPointElement(type: EndPointElementType.PHOTO, name: "imageUrl", endPoint: mercadoLibreEP),
                     //new EndPointElement(type: EndPointElementType.PRICE, name: "d", endPoint: mercadoLibreEP),
                     new EndPointElement(type: EndPointElementType.DESCRIPTOR, name: "anio", description : "anio", endPoint: mercadoLibreEP)
             ]
@@ -76,7 +76,7 @@ class BootstrapService {
                     new EndPointElement(type: EndPointElementType.ELEMENT_ID, name: "id", endPoint: localEP),
                     new EndPointElement(type: EndPointElementType.NAME, name: "title", endPoint: localEP),
                     new EndPointElement(type: EndPointElementType.LINK, name: "url", endPoint: localEP),
-                    //new EndPointElement(type: EndPointElementType.PHOTO, name: "c", endPoint: localEP),
+                    new EndPointElement(type: EndPointElementType.PHOTO, name: "imageUrl", endPoint: localEP),
                     new EndPointElement(type: EndPointElementType.PRICE, name: "price", endPoint: localEP),
                     //new EndPointElement(type: EndPointElementType.DESCRIPTOR, name: "anio", description : "anio", localEP: mercadoLibreEP)
             ]

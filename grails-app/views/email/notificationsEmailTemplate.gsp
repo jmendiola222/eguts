@@ -24,8 +24,8 @@
 							<tr>
 								<td width="10%"></td>
 								<g:if test="${item.photo}">
-									<td width="40px" height="40px">
-										<img width="40px" height="40px" src="${item.photo}">
+									<td height="60px">
+										<img height="60px" src="${item.photo}">
 									</td>
 								</g:if>
 								<td width="75%">
