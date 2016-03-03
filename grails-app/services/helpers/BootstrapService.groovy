@@ -28,7 +28,7 @@ class BootstrapService {
             sysAdminUsr.save(failOnError: true, flush: true);
         }
         def adminUsr = User.findByUsername("admin") ?: new User(email: 'admin@eguts.com', username: 'admin', password: 'eguts2014', enabled: true, role: adminRole).save(failOnError: true)
-        def testUsr = User.findByUsername("test") ?: new User(email: 'test@eguts.com', username: 'test', password: 'test2014', enabled: true, role: userRole, userProfile: new UserProfile()).save(failOnError: true)
+        def testUsr = User.findByUsername("jmendiola") ?: new User(email: 'jmendiola222@gmail.com', username: 'jmendiola', password: 'test2014', enabled: true, role: userRole, userProfile: new UserProfile()).save(failOnError: true)
 
         //-------------------------
 

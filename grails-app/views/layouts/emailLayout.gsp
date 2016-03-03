@@ -16,7 +16,7 @@
 									<tr>
 										<td width="100%" bgcolor="#ffffff" style="text-align: left;">
 											<g:link controller="Front" action="index" absolute="true">
-												<g:img dir="/localization/image/" file="logo-app-116x80.png" absolute="true"
+												<g:img dir="images" file="logo-eguts.png" absolute="true"
 												 	alt="eguts"
 													style="display: inline-block;margin-left: 30px; max-width: 130px !important; height: auto !important; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;"
 													border="0"/>

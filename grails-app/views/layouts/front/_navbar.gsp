@@ -6,11 +6,28 @@
 			<div class="container">
 				<ul>
 				<g:if test="${isLoggedIn}">
+					<g:if test="${isAdmin}">
+						<li>
+							<span>
+								<g:link controller="admin">
+									<g:message code="default.admin.label"/>&nbsp;
+								</g:link>
+							</span>
+							<span>
+								&nbsp|&nbsp&nbsp;
+							</span>
+						</li>
+					</g:if>
+					<g:else>
 					<li>
 						<span>
 							<g:link action="userProfile"><g:message code="front.profile" /></g:link>
 						</span>
+						<span>
+							&nbsp|&nbsp&nbsp;
+						</span>
 					</li>
+					</g:else>
 					<li>
 						¡
 						<g:message code="front.wellcome" />

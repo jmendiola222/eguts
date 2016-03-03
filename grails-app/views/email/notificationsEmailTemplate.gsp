@@ -11,21 +11,37 @@
 			<td width="100%" bgcolor="#ffffff" style="text-align: left;">
 				<p
 					style="color: #222222; font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 19px; margin-top: 0; margin-bottom: 20px; padding: 0; font-weight: normal;">
-					Estimado usuario de eguts ${user.name},
+					Estimado usuario de eguts ${user.username},
 				</p>
 
 				<p
 					style="color: #222222; font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 19px; margin-top: 0; margin-bottom: 20px; padding: 0; font-weight: normal;">
-					Le informamos la url ${subscriptionResult.susbcription.url} ha recivido las siguintes notificaciones:
+					Le informamos la url ${subscriptionResult.subscription.url} ha recivido las siguintes notificaciones:
 				</p>
 				<p>
-					<ul>
-						<g:each var="item" in="${subscriptionResult.updates}">
-							<li>
-								<span><g:message code="item.id.label"/>:</span><span>item</span>
-							</li>
+					<table bgcolor="#FFFFFF" border="0" cellspacing="0" cellpadding="0" width="100%">
+						<g:each var="item" in="${subscriptionResult.resultItemDTOs}">
+							<tr>
+								<td width="10%"></td>
+								<td width="75%">
+									<g:if test="${item.link}">
+										<a href="${item.link}">
+									</g:if>
+
+									<g:if test="${item.name}">
+										<span>${item.name}</span>
+									</g:if>
+									<g:if test="${item.price}">
+										<b><span>${item.price}</span></b>
+									</g:if>
+
+									<g:if test="${item.link}">
+										</a>
+									</g:if>
+								</td>
+							</tr>
 						</g:each>
-					</ul>
+					</table>
 				</p>
 			</td>
 		</tr>

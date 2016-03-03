@@ -18,7 +18,7 @@ class MailNotifierHelper {
 
 	@Autowired
 	public MailNotifierHelper(GrailsApplication grailsApplication) {
-		sender = grailsApplication.config.notifications.from.toString();
+		sender = grailsApplication.config.app.notifications.from.toString();
 	}
 
 	def sendUserCreated(User user, String password) {

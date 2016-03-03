@@ -1,5 +1,6 @@
 package models.result
 
+import dto.ResultItemDTO
 import helpers.DateUtils
 import models.Subscription
 
@@ -16,11 +17,14 @@ class SubscriptionResult {
     SubscriptionResultStatus status
     String description
 
+
+    def data
     String[] updates
+    List<ResultItemDTO> resultItemDTOs
 
     static hasMany = [itemIds: String]
 
-    static transients = ['updates']
+    static transients = ['data','updates', 'resultItemDTOs']
 
     static constraints = {
         subscription(nullable: false)
@@ -63,6 +67,7 @@ class SubscriptionResult {
         this.updates = newItemList - myItemList;
         if(this.updates.size() > 0){
             this.setItemIds(newItemList)
+            this.data = subscriptionResult.data
             this.lastSuccessfulUpdate = DateUtils.now();
         }
     }

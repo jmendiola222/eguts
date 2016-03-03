@@ -13,6 +13,9 @@ class SecurityConstants {
     public static final String HAS_SYS_ADMIN_ROLE = "hasRole('ROLE_SYSADMIN')"
     public static final String HAS_BACK_ABM_ROLE = "hasRole('ROLE_ADMIN')"
 
+    public static final String[] CAN_ACCESS_FRONT = [ROLE_ADMIN, ROLE_USER];
+    public static final String[] CAN_BACK_ABM = [ROLE_ADMIN, ROLE_SYSADMIN];
+
 
 
 }

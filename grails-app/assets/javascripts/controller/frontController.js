@@ -42,7 +42,7 @@ app.controller('SubscriptionCtrl', [ '$scope', 'Subscription',
 			Subscription.subscribeAnonymous($scope.subscription)
 			.success(
 				function(response) {
-					$scope.alert = 'Subscripcion guardada correctamente.' + response.data;
+					$scope.alert = 'Subscripcion guardada correctamente.';
 					$scope.alertType = "alert-success";
 				}
 			).error(
